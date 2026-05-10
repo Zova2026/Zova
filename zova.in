@@ -1,0 +1,467 @@
+index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZOVA</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
+background:#050505;
+color:white;
+font-family:'Poppins',sans-serif;
+}
+
+header{
+position:fixed;
+top:0;
+width:100%;
+background:#050505ee;
+backdrop-filter:blur(10px);
+padding:18px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+z-index:1000;
+border-bottom:1px solid #222;
+}
+
+.logo-area{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.logo-area img{
+width:55px;
+height:55px;
+object-fit:contain;
+}
+
+.logo-text h1{
+font-family:'Cinzel',serif;
+letter-spacing:10px;
+font-size:28px;
+background:linear-gradient(to right,#F8E7A1,#D4AF37,#8C6A1D);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.logo-text p{
+font-size:11px;
+letter-spacing:4px;
+color:#aaa;
+margin-top:3px;
+}
+
+nav a{
+margin-left:28px;
+text-decoration:none;
+color:#ddd;
+font-size:15px;
+transition:.3s;
+}
+
+nav a:hover{
+color:#D4AF37;
+}
+
+.hero{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:0 20px;
+}
+
+.hero h2{
+font-size:90px;
+font-family:'Cinzel',serif;
+letter-spacing:20px;
+background:linear-gradient(to right,#F8E7A1,#D4AF37,#8C6A1D);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+margin-bottom:20px;
+}
+
+.hero p{
+max-width:700px;
+margin:auto;
+color:#bbb;
+font-size:18px;
+line-height:32px;
+}
+
+.gallery{
+padding:120px 8%;
+}
+
+.section-title{
+text-align:center;
+font-size:42px;
+margin-bottom:70px;
+font-family:'Cinzel',serif;
+background:linear-gradient(to right,#F8E7A1,#D4AF37,#8C6A1D);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:35px;
+}
+
+.card{
+background:#0d0d0d;
+border:1px solid #222;
+border-radius:25px;
+overflow:hidden;
+transition:.4s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card img{
+width:100%;
+height:380px;
+object-fit:cover;
+cursor:pointer;
+}
+
+.card-content{
+padding:25px;
+}
+
+.card-content h3{
+font-size:28px;
+margin-bottom:15px;
+font-family:'Cinzel',serif;
+color:#D4AF37;
+}
+
+.card-content p{
+color:#aaa;
+line-height:28px;
+margin-bottom:25px;
+}
+
+.buttons{
+display:flex;
+gap:15px;
+}
+
+.buttons button{
+flex:1;
+padding:14px;
+border:none;
+border-radius:14px;
+font-size:15px;
+cursor:pointer;
+transition:.3s;
+}
+
+.normal{
+background:#1b1b1b;
+color:white;
+}
+
+.normal:hover{
+background:#2c2c2c;
+}
+
+.luxury{
+background:linear-gradient(to right,#F8E7A1,#D4AF37,#8C6A1D);
+color:black;
+font-weight:600;
+}
+
+.luxury:hover{
+opacity:.9;
+}
+
+.contact{
+padding:100px 8%;
+text-align:center;
+}
+
+.contact h2{
+font-size:40px;
+margin-bottom:30px;
+font-family:'Cinzel',serif;
+background:linear-gradient(to right,#F8E7A1,#D4AF37,#8C6A1D);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.contact p{
+margin:12px 0;
+color:#bbb;
+font-size:18px;
+}
+
+footer{
+padding:30px;
+text-align:center;
+border-top:1px solid #222;
+color:#777;
+margin-top:60px;
+}
+
+.popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.9);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:2000;
+}
+
+.popup img{
+max-width:90%;
+max-height:90%;
+border-radius:20px;
+}
+
+.close{
+position:absolute;
+top:30px;
+right:40px;
+font-size:40px;
+cursor:pointer;
+color:white;
+}
+
+@media(max-width:768px){
+
+header{
+padding:18px 5%;
+flex-direction:column;
+gap:15px;
+}
+
+nav{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+nav a{
+margin:8px;
+}
+
+.hero h2{
+font-size:50px;
+letter-spacing:10px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo-area">
+
+<img src="zovalogo.png">
+
+<div class="logo-text">
+<h1>ZOVA</h1>
+<p>DESIGNS FOR YOU</p>
+</div>
+
+</div>
+
+<nav>
+<a href="#">Home</a>
+<a href="#gallery">Gallery</a>
+<a href="#contact">Contact</a>
+</nav>
+
+</header>
+
+<section class="hero">
+
+<div>
+<h2>ZOVA</h2>
+
+<p>
+Premium Custom Photo Frames, Coffee Mugs & T-Shirts crafted with luxury, creativity and personal style.
+</p>
+</div>
+
+</section>
+
+<section class="gallery" id="gallery">
+
+<h2 class="section-title">Our Collection</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<img src="frame1.jpg" onclick="openPopup(this.src)">
+
+<div class="card-content">
+
+<h3>Photo Frame</h3>
+
+<p>
+Luxury customized photo frames designed for your special memories and gifting moments.
+</p>
+
+<div class="buttons">
+
+<button class="normal"
+onclick="orderNow('Photo Frame','Normal')">
+Normal
+</button>
+
+<button class="luxury"
+onclick="orderNow('Photo Frame','Luxury')">
+Luxury
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="mug1.jpg" onclick="openPopup(this.src)">
+
+<div class="card-content">
+
+<h3>Coffee Mug</h3>
+
+<p>
+Premium personalized coffee mugs with custom photos, names and creative artwork.
+</p>
+
+<div class="buttons">
+
+<button class="normal"
+onclick="orderNow('Coffee Mug','Normal')">
+Normal
+</button>
+
+<button class="luxury"
+onclick="orderNow('Coffee Mug','Luxury')">
+Luxury
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="t1.jpeg" onclick="openPopup(this.src)">
+
+<div class="card-content">
+
+<h3>T-Shirt</h3>
+
+<p>
+Modern custom T-shirts designed with anime, quotes, graphics and premium fashion style.
+</p>
+
+<div class="buttons">
+
+<button class="normal"
+onclick="orderNow('T-Shirt','Normal')">
+Normal
+</button>
+
+<button class="luxury"
+onclick="orderNow('T-Shirt','Luxury')">
+Luxury
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="contact" id="contact">
+
+<h2>Contact ZOVA</h2>
+
+<p>📞 +91 8391979133</p>
+
+<p>📧 sahalom.sh2001@gmail.com</p>
+
+<p>📍 Murshidabad, West Bengal, India</p>
+
+</section>
+
+<footer>
+
+© 2026 ZOVA — All Rights Reserved.
+
+</footer>
+
+<div class="popup" id="popup">
+
+<span class="close" onclick="closePopup()">×</span>
+
+<img id="popup-img">
+
+</div>
+
+<script>
+
+function openPopup(src){
+document.getElementById('popup').style.display='flex';
+document.getElementById('popup-img').src=src;
+}
+
+function closePopup(){
+document.getElementById('popup').style.display='none';
+}
+
+function orderNow(product,type){
+
+let number='918391979133';
+
+let msg=`Hello ZOVA, I want to order a ${type} ${product}.`;
+
+window.open(`https://wa.me/${number}?text=${encodeURIComponent(msg)}`);
+
+}
+
+</script>
+
+</body>
+</html>
