@@ -551,7 +551,7 @@ font-size:36px;
 <h2>ZOVA</h2>
 
 <p>
-Premium custom fashion, luxury photo frames, coffee mugs and personalized lifestyle creations designed with creativity, emotion and modern aesthetics.
+Premium custom fashion, luxury photo frames, coffee mugs and personalized lifestyle creations designed with creativity, emotion and modern aesthetics. Experience modern luxury personalization with ZOVA.
 </p>
 
 <div class="hero-btns">
@@ -565,17 +565,21 @@ Premium custom fashion, luxury photo frames, coffee mugs and personalized lifest
 <h2 class="section-title">About ZOVA</h2>
 
 <div class="about">
-<img src="frame1.jpg">
 
-<div class="about-text">
-<h3>Luxury Meets Creativity</h3>
+<div class="about-text" style="max-width:1000px;margin:auto;text-align:center;">
+<h3 style="font-size:52px;">Luxury Meets Creativity</h3>
 
 <p>
-ZOVA is a premium lifestyle and customization brand focused on delivering luxury personalized products with modern aesthetics and creative identity.
+ZOVA is a modern luxury customization and lifestyle brand focused on premium personalized products crafted with creativity, emotion and elegant aesthetics.
 
-From premium photo frames and coffee mugs to anime streetwear T-shirts, every product is crafted to feel unique, elegant and memorable.
+Our goal is to transform everyday products into memorable luxury experiences through high quality printing, modern designs and premium finishing.
+
+From customized photo frames and anime streetwear to coffee mugs and creative gift items, every product is designed to feel exclusive, stylish and meaningful.
+
+At ZOVA, we believe personalization is more than design — it is identity, emotion and creativity combined into a premium experience.
 </p>
 </div>
+
 </div>
 </section>
 
@@ -588,6 +592,7 @@ From premium photo frames and coffee mugs to anime streetwear T-shirts, every pr
 <img src="frame1.jpg" onclick="openPopup(this.src)">
 
 <div class="product-content">
+<div style="color:#888;margin-bottom:10px;">Product Code: ZPF-101</div>
 <h3>Photo Frame</h3>
 <div class="price">₹599.00 — ₹1499.00</div>
 
@@ -606,6 +611,7 @@ Luxury customized photo frames designed for anniversaries, couples, family momen
 <img src="mug1.jpg" onclick="openPopup(this.src)">
 
 <div class="product-content">
+<div style="color:#888;margin-bottom:10px;">Product Code: ZCM-202</div>
 <h3>Coffee Mug</h3>
 <div class="price">₹399.00 — ₹699.00</div>
 
@@ -624,6 +630,7 @@ Premium personalized coffee mugs with anime artwork, photos, names and modern cu
 <img src="t1.jpeg" onclick="openPopup(this.src)">
 
 <div class="product-content">
+<div style="color:#888;margin-bottom:10px;">Product Code: ZTS-303</div>
 <h3>T-Shirt</h3>
 <div class="price">₹799.00 — ₹1999.00</div>
 
@@ -645,12 +652,16 @@ Luxury oversized anime and graphic T-shirts designed with modern streetwear aest
 <h2 class="section-title">Gallery</h2>
 
 <div class="gallery-grid">
+
+<div style="position:relative;">
+<div style="position:absolute;top:15px;left:15px;background:black;color:#D4AF37;padding:8px 14px;border-radius:30px;font-size:13px;z-index:10;">Code: GL-01</div>
 <img src="frame1.jpg" onclick="openPopup(this.src)">
 <img src="mug1.jpg" onclick="openPopup(this.src)">
 <img src="t1.jpeg" onclick="openPopup(this.src)">
 <img src="frame1.jpg" onclick="openPopup(this.src)">
 <img src="mug1.jpg" onclick="openPopup(this.src)">
 <img src="t1.jpeg" onclick="openPopup(this.src)">
+</div>
 </div>
 </section>
 
@@ -661,7 +672,7 @@ Luxury oversized anime and graphic T-shirts designed with modern streetwear aest
 <input type="text" placeholder="Your Name">
 <input type="email" placeholder="Your Email">
 <textarea rows="6" placeholder="Your Message"></textarea>
-<button>Send Query</button>
+<button onclick="sendMail()">Send Query</button>
 </div>
 </section>
 
@@ -669,10 +680,33 @@ Luxury oversized anime and graphic T-shirts designed with modern streetwear aest
 <h2 class="section-title">Payment Methods</h2>
 
 <div class="payment-box">
+
+<div class="pay-card">
+<h3>UPI</h3>
+<p style="margin-top:15px;color:#aaa;">zova@upi</p>
+</div>
+
+<div class="pay-card">
+<h3>PhonePe</h3>
+<p style="margin-top:15px;color:#aaa;">8391979133@ybl</p>
+</div>
+
+<div class="pay-card">
+<h3>Google Pay</h3>
+<p style="margin-top:15px;color:#aaa;">8391979133@okaxis</p>
+</div>
+
+<div class="pay-card">
+<h3>Paytm</h3>
+<p style="margin-top:15px;color:#aaa;">+91 8391979133</p>
+</div>
+
+<div style="display:none;">
 <div class="pay-card"><h3>UPI</h3></div>
 <div class="pay-card"><h3>PhonePe</h3></div>
 <div class="pay-card"><h3>Google Pay</h3></div>
 <div class="pay-card"><h3>Paytm</h3></div>
+</div>
 </div>
 </section>
 
@@ -700,10 +734,10 @@ Luxury oversized anime and graphic T-shirts designed with modern streetwear aest
 <section id="contact">
 <h2 class="section-title">Contact ZOVA</h2>
 
-<div class="contact-box">
+<div class="contact-box" style="max-width:850px;margin:auto;border:1px solid rgba(212,175,55,.2);padding:60px;border-radius:35px;background:#0d0d0d;">
 <p>📞 +91 8391979133</p>
 <p>📧 sahalom.sh2001@gmail.com</p>
-<p>📍 Murshidabad, West Bengal, India</p>
+<p>📍 Mithipur, Jangipur, Murshidabad, West Bengal, India - 742213</p>
 </div>
 </section>
 
@@ -718,6 +752,18 @@ Luxury oversized anime and graphic T-shirts designed with modern streetwear aest
 
 <script>
 
+function sendMail(){
+let name=document.querySelector('input[type="text"]').value;
+let email=document.querySelector('input[type="email"]').value;
+let message=document.querySelector('textarea').value;
+
+let subject=`ZOVA Query from ${name}`;
+let body=`Name: ${name}%0AEmail: ${email}%0A%0AMessage:%0A${message}`;
+
+window.location.href=`mailto:sahalom.sh2001@gmail.com?subject=${subject}&body=${body}`;
+}
+
+
 function openPopup(src){
 document.getElementById('popup').style.display='flex';
 document.getElementById('popup-img').src=src;
@@ -729,7 +775,9 @@ document.getElementById('popup').style.display='none';
 
 function orderNow(product,type){
 let number='918391979133';
-let msg=`Hello ZOVA, I want to order a ${type} ${product}.`;
+let msg=`Hello ZOVA,%0A%0AI want to order:%0AProduct: ${product}%0AType: ${type}%0ABrand: ZOVA`;
+window.open(`https://wa.me/${number}?text=${msg}`);
+} ${product}.`;
 window.open(`https://wa.me/${number}?text=${encodeURIComponent(msg)}`);
 }
 
