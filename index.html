@@ -118,14 +118,12 @@ border-radius:50%;
 animation:float 15s linear infinite;
 }
 
-/* HEADER */
-
 header{
 position:fixed;
 top:0;
 left:0;
 width:100%;
-padding:20px 7%;
+padding:20px 5%;
 display:flex;
 justify-content:space-between;
 align-items:center;
@@ -142,36 +140,36 @@ gap:15px;
 }
 
 .logo-wrap img{
-width:75px;
-height:75px;
+width:65px;
+height:65px;
 object-fit:contain;
 }
 
 .logo-text h1{
 font-family:'Cinzel',serif;
-font-size:38px;
-letter-spacing:12px;
+font-size:34px;
+letter-spacing:10px;
 background:linear-gradient(to right,#fff5cc,#d4af37,#7d5a00);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 }
 
 .logo-text p{
+font-size:10px;
+letter-spacing:4px;
 color:#ccc;
-font-size:11px;
-letter-spacing:5px;
-margin-top:5px;
 }
 
 nav{
 display:flex;
 flex-wrap:wrap;
+justify-content:center;
 }
 
 nav a{
 color:#ddd;
 text-decoration:none;
-margin-left:28px;
+margin-left:22px;
 font-size:14px;
 position:relative;
 transition:.4s;
@@ -196,10 +194,8 @@ nav a:hover{
 color:#d4af37;
 }
 
-/* GENERAL */
-
 section{
-padding:120px 8%;
+padding:120px 7%;
 }
 
 .section-title{
@@ -220,7 +216,6 @@ display:flex;
 justify-content:center;
 align-items:center;
 text-align:center;
-position:relative;
 }
 
 .hero-content small{
@@ -232,7 +227,7 @@ font-size:12px;
 .hero-content h2{
 font-family:'Cinzel',serif;
 font-size:140px;
-letter-spacing:30px;
+letter-spacing:25px;
 margin:25px 0;
 background:linear-gradient(to right,#fff5cc,#d4af37,#7d5a00);
 -webkit-background-clip:text;
@@ -328,7 +323,7 @@ margin-bottom:45px;
 .product-row{
 display:flex;
 justify-content:center;
-gap:30px;
+gap:25px;
 flex-wrap:wrap;
 }
 
@@ -353,7 +348,7 @@ box-shadow:0 0 30px rgba(212,175,55,.4);
 .gallery-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:30px;
+gap:25px;
 }
 
 .gallery-grid img{
@@ -428,7 +423,7 @@ cursor:pointer;
 .payment-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:30px;
+gap:25px;
 }
 
 .payment-card{
@@ -534,36 +529,96 @@ justify-content:center;
 align-items:center;
 z-index:999999;
 backdrop-filter:blur(10px);
+padding:20px;
 }
 
-.popup img{
-max-width:85%;
-max-height:85%;
+.popup-content{
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:25px;
+width:100%;
+}
+
+#popup-image{
+max-width:90%;
+max-height:70vh;
 border-radius:20px;
 border:2px solid #fff;
 transition:.4s ease;
 cursor:pointer;
+object-fit:contain;
 }
 
 .close-popup{
 position:absolute;
-top:40px;
-right:50px;
+top:25px;
+right:35px;
 color:#fff;
 font-size:55px;
 cursor:pointer;
+}
+
+.popup-details{
+text-align:center;
+}
+
+.popup-details h2{
+font-size:38px;
+font-family:'Cinzel',serif;
+color:#d4af37;
+margin-bottom:10px;
+}
+
+.popup-details p{
+color:#aaa;
+font-size:18px;
+margin-bottom:25px;
+}
+
+.popup-buttons{
+display:flex;
+gap:20px;
+justify-content:center;
+flex-wrap:wrap;
+}
+
+.popup-buttons button{
+padding:15px 35px;
+border:none;
+border-radius:50px;
+cursor:pointer;
+font-size:16px;
+font-weight:600;
+transition:.4s;
+}
+
+.normal-order{
+background:#1a1a1a;
+color:#fff;
+border:1px solid #fff;
+}
+
+.luxury-order{
+background:linear-gradient(to right,#fff5cc,#d4af37,#7d5a00);
+color:#000;
+}
+
+.popup-buttons button:hover{
+transform:translateY(-5px);
+box-shadow:0 0 25px rgba(212,175,55,.4);
 }
 
 /* FLOATING WHATSAPP */
 
 .whatsapp-float{
 position:fixed;
-right:25px;
-bottom:25px;
+right:20px;
+bottom:20px;
 background:#111;
 color:#fff;
 border:1px solid #d4af37;
-padding:16px 22px;
+padding:15px 22px;
 border-radius:50px;
 text-decoration:none;
 z-index:999;
@@ -571,7 +626,7 @@ box-shadow:0 0 25px rgba(212,175,55,.15);
 animation:floatBtn 3s infinite ease-in-out;
 }
 
-/* ANIMATIONS */
+/* ANIMATION */
 
 .animate{
 opacity:0;
@@ -645,7 +700,8 @@ display:none;
 
 header{
 flex-direction:column;
-gap:20px;
+gap:15px;
+padding:15px 5%;
 }
 
 nav{
@@ -654,6 +710,15 @@ justify-content:center;
 
 nav a{
 margin:8px;
+font-size:13px;
+}
+
+.logo-text h1{
+font-size:28px;
+}
+
+.hero{
+padding-top:120px;
 }
 
 .hero-content h2{
@@ -661,13 +726,55 @@ font-size:70px;
 letter-spacing:10px;
 }
 
-.section-title{
-font-size:40px;
+.hero-content h3{
+font-size:18px;
 }
 
-.query-left h3{
+.hero-content p{
+font-size:15px;
+line-height:30px;
+}
+
+.section-title{
 font-size:38px;
-line-height:55px;
+}
+
+.about-box h3,
+.query-left h3{
+font-size:35px;
+line-height:50px;
+}
+
+.about-box p{
+font-size:15px;
+line-height:32px;
+}
+
+.product-image{
+width:100%;
+max-width:320px;
+height:420px;
+}
+
+.gallery-grid{
+grid-template-columns:1fr;
+}
+
+.gallery-grid img{
+height:420px;
+}
+
+.popup-details h2{
+font-size:28px;
+}
+
+.popup-buttons{
+flex-direction:column;
+width:100%;
+}
+
+.popup-buttons button{
+width:100%;
 }
 
 .contact-box{
@@ -682,22 +789,14 @@ padding:40px 25px;
 
 <body>
 
-<!-- CURSOR -->
-
 <div class="cursor"></div>
-
-<!-- LOADER -->
 
 <div id="loader">
 <h1>ZOVA</h1>
 <p>CUSTOM FASHION & LIFESTYLE</p>
 </div>
 
-<!-- PROGRESS BAR -->
-
 <div class="progress-bar"></div>
-
-<!-- PARTICLES -->
 
 <div class="particles">
 <span style="left:10%;animation-duration:10s"></span>
@@ -710,8 +809,6 @@ padding:40px 25px;
 <span style="left:80%;animation-duration:15s"></span>
 <span style="left:90%;animation-duration:11s"></span>
 </div>
-
-<!-- HEADER -->
 
 <header>
 
@@ -727,7 +824,6 @@ padding:40px 25px;
 </div>
 
 <nav>
-
 <a href="#home">Home</a>
 <a href="#about">About</a>
 <a href="#products">Products</a>
@@ -736,12 +832,9 @@ padding:40px 25px;
 <a href="#payment">Payment</a>
 <a href="#faq">FAQ</a>
 <a href="#contact">Contact</a>
-
 </nav>
 
 </header>
-
-<!-- HOME -->
 
 <section class="hero" id="home">
 
@@ -773,8 +866,6 @@ WhatsApp Order
 
 </section>
 
-<!-- ABOUT -->
-
 <section id="about">
 
 <h2 class="section-title animate">
@@ -799,8 +890,6 @@ At ZOVA, personalization is more than design — it is identity, expression and 
 
 </section>
 
-<!-- PRODUCTS -->
-
 <section id="products">
 
 <h2 class="section-title animate">
@@ -816,7 +905,7 @@ Photo Frame
 </h3>
 
 <div class="category-price">
-₹499.00 — ₹999.00
+₹599.00 — ₹1499.00
 </div>
 
 <div class="product-row">
@@ -837,7 +926,7 @@ onclick="openPopup(this.src,'Photo Frame','ZPF-103')">
 
 </div>
 
-<!-- COFFEE CUP -->
+<!-- COFFEE MUG -->
 
 <div class="product-category animate">
 
@@ -876,7 +965,7 @@ T-Shirt
 </h3>
 
 <div class="category-price">
-₹399.00 — ₹1999.00
+₹799.00 — ₹1999.00
 </div>
 
 <div class="product-row">
@@ -898,8 +987,6 @@ onclick="openPopup(this.src,'T-Shirt','ZTS-303')">
 </div>
 
 </section>
-
-<!-- GALLERY -->
 
 <section id="gallery">
 
@@ -930,8 +1017,6 @@ onclick="openPopup(this.src,'T-Shirt','ZTS-302')">
 </div>
 
 </section>
-
-<!-- QUERY -->
 
 <section id="query">
 
@@ -986,8 +1071,6 @@ SEND QUERY
 
 </section>
 
-<!-- PAYMENT -->
-
 <section id="payment">
 
 <h2 class="section-title animate">
@@ -1035,8 +1118,6 @@ onclick="copyText('+91 8391979133')">
 </div>
 
 </section>
-
-<!-- FAQ -->
 
 <section id="faq">
 
@@ -1098,8 +1179,6 @@ Yes. ZOVA provides premium luxury packaging for selected products.
 
 </section>
 
-<!-- CONTACT -->
-
 <section id="contact">
 
 <h2 class="section-title animate">
@@ -1113,8 +1192,9 @@ CONTACT ZOVA
 <h3>📍 Location</h3>
 
 <p>
-Mithipur, Jangipur, Murshidabad,<br>
-West Bengal, India - 742213<br>
+Mithipur, Jangipur,<br>
+Murshidabad,<br>
+West Bengal, India - 742213
 </p>
 
 </div>
@@ -1143,8 +1223,6 @@ sahalom.sh2001@gmail.com
 
 </section>
 
-<!-- FOOTER -->
-
 <footer>
 
 © 2026 ZOVA — Custom Fashion & Lifestyle
@@ -1160,7 +1238,37 @@ onclick="closePopup()">
 ×
 </span>
 
+<div class="popup-content">
+
 <img id="popup-image">
+
+<div class="popup-details">
+
+<h2 id="popup-product"></h2>
+
+<p id="popup-code"></p>
+
+<div class="popup-buttons">
+
+<button class="normal-order"
+onclick="sendOrder('Normal')">
+
+Normal
+
+</button>
+
+<button class="luxury-order"
+onclick="sendOrder('Luxury')">
+
+Luxury
+
+</button>
+
+</div>
+
+</div>
+
+</div>
 
 </div>
 
@@ -1172,8 +1280,6 @@ class="whatsapp-float">
 Chat With ZOVA
 
 </a>
-
-<!-- JAVASCRIPT -->
 
 <script>
 
@@ -1216,6 +1322,10 @@ document.querySelector('.progress-bar').style.width=scrolled+'%';
 let popup=document.getElementById("popup");
 let popupImage=document.getElementById("popup-image");
 
+let currentProduct="";
+let currentCode="";
+let currentImage="";
+
 let zoomed=false;
 
 function openPopup(src,product,code){
@@ -1224,14 +1334,14 @@ popup.style.display="flex";
 
 popupImage.src=src;
 
-popupImage.setAttribute(
-"data-whatsapp",
-`https://wa.me/918391979133?text=
-Brand: ZOVA
-Product: ${product}
-Code: ${code}
-Image: ${src}`
-);
+document.getElementById("popup-product").innerText=product;
+
+document.getElementById("popup-code").innerText=
+"Product Code : " + code;
+
+currentProduct=product;
+currentCode=code;
+currentImage=src;
 
 }
 
@@ -1276,6 +1386,26 @@ closePopup();
 }
 
 });
+
+/* WHATSAPP ORDER */
+
+function sendOrder(type){
+
+let message=
+`Hello ZOVA,
+
+Brand: ZOVA
+Product: ${currentProduct}
+Code: ${currentCode}
+Type: ${type}
+Image: ${currentImage}`;
+
+let url=
+`https://wa.me/918391979133?text=${encodeURIComponent(message)}`;
+
+window.open(url,'_blank');
+
+}
 
 /* COPY */
 
