@@ -1,1011 +1,1331 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ZOVA | Custom Fashion & Lifestyle</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      scroll-behavior:smooth;
-    }
-
-    body{
-      background:#050505;
-      color:#fff;
-      font-family:'Poppins',sans-serif;
-      overflow-x:hidden;
-      cursor:none;
-    }
-
-    body::-webkit-scrollbar{
-      width:8px;
-    }
-
-    body::-webkit-scrollbar-thumb{
-      background:#d4af37;
-      border-radius:20px;
-    }
-
-    #loader{
-      position:fixed;
-      inset:0;
-      background:#000;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      z-index:99999;
-      flex-direction:column;
-      transition:1s;
-    }
-
-    #loader h1{
-      font-family:'Cinzel',serif;
-      font-size:80px;
-      letter-spacing:18px;
-      background:linear-gradient(to right,#fff5cc,#d4af37,#7d5a00);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      animation:glow 2s infinite;
-    }
-
-    #loader p{
-      color:#aaa;
-      margin-top:15px;
-      letter-spacing:5px;
-      font-size:13px;
-    }
-
-    .cursor{
-      width:22px;
-      height:22px;
-      border:2px solid #d4af37;
-      border-radius:50%;
-      position:fixed;
-      pointer-events:none;
-      transform:translate(-50%,-50%);
-      z-index:999999;
-      transition:.08s;
-      box-shadow:0 0 20px rgba(212,175,55,.6);
-    }
-
-    .progress-bar{
-      position:fixed;
-      top:0;
-      left:0;
-      height:3px;
-      background:linear-gradient(to right,#fff5cc,#d4af37,#7d5a00);
-      width:0%;
-      z-index:9999;
-    }
-
-    .particles{
-      position:fixed;
-      inset:0;
-      overflow:hidden;
-      z-index:-1;
-    }
-
-    .particles span{
-      position:absolute;
-      display:block;
-      width:4px;
-      height:4px;
-      background:rgba(212,175,55,.7);
-      border-radius:50%;
-      animation:float 15s linear infinite;
-    }
-
-    header{
-      position:fixed;
-      top:0;
-      width:100%;
-      padding:20px 7%;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      background:rgba(0,0,0,.65);
-      backdrop-filter:blur(12px);
-      z-index:1000;
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
-
-    .logo-wrap{
-      display:flex;
-      align-items:center;
-      gap:15px;
-    }
-
-    .logo-wrap img{
-      width:75px;
-      height:75px;
-      object-fit:contain;
-    }
-
-    .logo-text h1{
-      font-family:'Cinzel',serif;
-      font-size:38px;
-      letter-spacing:12px;
-      background:linear-gradient(to right,#fff5cc,#d4af37,#7d5a00);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-    }
-
-    .logo-text p{
-      color:#ccc;
-      font-size:11px;
-      letter-spacing:5px;
-      margin-top:5px;
-    }
-
-    nav a{
-      color:#ddd;
-      text-decoration:none;
-      margin-left:28px;
-      font-size:14px;
-      position:relative;
-      transition:.4s;
-    }
-
-    nav a::after{
-      content:'';
-      position:absolute;
-      left:0;
-      bottom:-6px;
-      width:0%;
-      height:1px;
-      background:#d4af37;
-      transition:.4s;
-    }
-
-    nav a:hover::after{
-      width:100%;
-    }
-
-    nav a:hover{
-      color:#d4af37;
-    }
-
-    section{
-      padding:120px 8%;
-    }
-
-    .hero{
-      min-height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
-      position:relative;
-    }
-
-    .hero-content small{
-      letter-spacing:7px;
-      color:#aaa;
-      font-size:12px;
-    }
-
-    .hero-content h2{
-      font-family:'Cinzel',serif;
-      font-size:130px;
-      letter-spacing:30px;
-      margin:25px 0;
-      background:linear-gradient(to right,#fff5cc,#d4af37,#7d5a00);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      animation:fadeUp 1.4s ease;
-    }
-
-    .hero-content h3{
-      font-size:26px;
-      font-weight:400;
-      color:#eee;
-      letter-spacing:5px;
-      margin-bottom:30px;
-    }
-
-    .hero-content p{
-      max-width:850px;
-      margin:auto;
-      color:#aaa;
-      line-height:34px;
-      font-size:18px;
-    }
-
-    .hero-btns{
-      margin-top:45px;
-      display:flex;
-      justify-content:center;
-      gap:20px;
-      flex-wrap:wrap;
-    }
-
-    .hero-btns a{
-      padding:16px 34px;
-      border-radius:50px;
-      text-decoration:none;
-      transition:.4s;
-      font-weight:500;
-    }
-
-    .gold-btn{
-      background:linear-gradient(to right,#fff5cc,#d4af37,#7d5a00);
-      color:#000;
-    }
-
-    .outline-btn{
-      border:1px solid #d4af37;
-      color:#fff;
-    }
-
-    .hero-btns a:hover{
-      transform:translateY(-5px);
-      box-shadow:0 0 25px rgba(212,175,55,.25);
-    }
-
-    .section-title{
-      text-align:center;
-      font-family:'Cinzel',serif;
-      font-size:55px;
-      margin-bottom:80px;
-      background:linear-gradient(to right,#fff5cc,#d4af37,#7d5a00);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-    }
-
-    .about-box{
-      max-width:1000px;
-      margin:auto;
-      text-align:center;
-    }
-
-    .about-box h3{
-      font-family:'Cinzel',serif;
-      font-size:45px;
-      margin-bottom:30px;
-    }
-
-    .about-box p{
-      color:#aaa;
-      line-height:38px;
-      font-size:18px;
-    }
-
-    .product-grid,
-    .gallery-grid,
-    .payment-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-      gap:35px;
-    }
-
-    .card{
-      background:#0b0b0b;
-      border:1px solid rgba(255,255,255,.15);
-      border-radius:28px;
-      overflow:hidden;
-      transition:.5s;
-      position:relative;
-    }
-
-    .card:hover{
-      transform:translateY(-8px);
-      box-shadow:0 0 35px rgba(212,175,55,.15);
-    }
-
-    .card img,
-    .gallery-item img{
-      width:100%;
-      height:420px;
-      object-fit:cover;
-      border:2px solid #fff;
-      cursor:pointer;
-      transition:.5s;
-    }
-
-    .card:hover img,
-    .gallery-item:hover img{
-      transform:scale(1.05);
-    }
-
-    .card-content{
-      padding:28px;
-    }
-
-    .code{
-      color:#999;
-      font-size:13px;
-      margin-bottom:12px;
-      letter-spacing:2px;
-    }
-
-    .card-content h3{
-      font-family:'Cinzel',serif;
-      font-size:32px;
-      color:#d4af37;
-      margin-bottom:15px;
-    }
-
-    .price{
-      font-size:22px;
-      margin-bottom:18px;
-    }
-
-    .card-content p{
-      color:#aaa;
-      line-height:30px;
-      margin-bottom:25px;
-    }
-
-    .card-btns{
-      display:flex;
-      gap:15px;
-    }
-
-    .card-btns button,
-    .popup-btns button,
-    .query-form button{
-      flex:1;
-      border:none;
-      padding:15px;
-      border-radius:16px;
-      cursor:pointer;
-      transition:.4s;
-      font-size:15px;
-    }
-
-    .normal-btn{
-      background:#1c1c1c;
-      color:#fff;
-    }
-
-    .luxury-btn,
-    .query-form button{
-      background:linear-gradient(to right,#fff5cc,#d4af37,#7d5a00);
-      color:#000;
-      font-weight:600;
-    }
-
-    .gallery-item{
-      position:relative;
-      overflow:hidden;
-      border-radius:25px;
-    }
-
-    .query-wrap{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-      gap:50px;
-      align-items:center;
-    }
-
-    .query-left h3{
-      font-family:'Cinzel',serif;
-      font-size:50px;
-      margin-bottom:25px;
-      line-height:70px;
-    }
-
-    .query-left p{
-      color:#aaa;
-      line-height:35px;
-      font-size:17px;
-    }
-
-    .query-form{
-      background:#0d0d0d;
-      padding:40px;
-      border-radius:30px;
-      border:1px solid rgba(255,255,255,.1);
-    }
-
-    .query-form input,
-    .query-form textarea{
-      width:100%;
-      margin-bottom:20px;
-      padding:18px;
-      border:none;
-      outline:none;
-      background:#151515;
-      color:#fff;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.08);
-    }
-
-    .payment-card{
-      padding:40px;
-      border-radius:28px;
-      text-align:center;
-      background:#0d0d0d;
-      border:1px solid rgba(255,255,255,.1);
-      transition:.5s;
-    }
-
-    .payment-card:hover{
-      transform:translateY(-7px);
-      border-color:#d4af37;
-      box-shadow:0 0 30px rgba(212,175,55,.15);
-    }
-
-    .payment-card h3{
-      font-family:'Cinzel',serif;
-      font-size:32px;
-      color:#d4af37;
-      margin-bottom:20px;
-    }
-
-    .payment-card p{
-      color:#aaa;
-    }
-
-    .faq-wrap{
-      max-width:900px;
-      margin:auto;
-    }
-
-    .faq{
-      background:#0d0d0d;
-      margin-bottom:20px;
-      border-radius:20px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.1);
-    }
-
-    .faq h4{
-      padding:25px;
-      cursor:pointer;
-      font-size:20px;
-      color:#d4af37;
-    }
-
-    .faq p{
-      padding:0 25px 25px;
-      color:#aaa;
-      line-height:32px;
-      display:none;
-    }
-
-    .contact-box{
-      max-width:900px;
-      margin:auto;
-      padding:60px;
-      border-radius:35px;
-      background:#0d0d0d;
-      border:1px solid rgba(255,255,255,.12);
-      text-align:center;
-      box-shadow:0 0 40px rgba(212,175,55,.08);
-    }
-
-    .contact-item{
-      margin-bottom:35px;
-    }
-
-    .contact-item h3{
-      font-size:30px;
-      margin-bottom:10px;
-    }
-
-    .contact-item p{
-      color:#aaa;
-      line-height:34px;
-    }
-
-    footer{
-      padding:35px;
-      text-align:center;
-      color:#777;
-      border-top:1px solid rgba(255,255,255,.08);
-    }
-
-    .popup{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.95);
-      display:none;
-      justify-content:center;
-      align-items:center;
-      z-index:99999;
-      flex-direction:column;
-      padding:30px;
-    }
-
-    .popup-content{
-      max-width:900px;
-      width:100%;
-      text-align:center;
-    }
-
-    .popup img{
-      width:100%;
-      max-height:70vh;
-      object-fit:contain;
-      border:2px solid #fff;
-      border-radius:20px;
-      transition:.3s;
-    }
-
-    .popup h3{
-      margin-top:25px;
-      font-family:'Cinzel',serif;
-      font-size:35px;
-      color:#d4af37;
-    }
-
-    .popup p{
-      margin:12px 0;
-      color:#aaa;
-    }
-
-    .popup-btns{
-      display:flex;
-      gap:15px;
-      margin-top:25px;
-      justify-content:center;
-    }
-
-    .close-popup{
-      position:absolute;
-      top:30px;
-      right:40px;
-      font-size:45px;
-      cursor:pointer;
-    }
-
-    .zoom-controls{
-      margin-top:20px;
-      display:flex;
-      justify-content:center;
-      gap:12px;
-    }
-
-    .zoom-controls button{
-      width:50px;
-      height:50px;
-      border:none;
-      border-radius:50%;
-      background:#1b1b1b;
-      color:#fff;
-      font-size:22px;
-      cursor:pointer;
-    }
-
-    .whatsapp-float{
-      position:fixed;
-      right:25px;
-      bottom:25px;
-      background:#111;
-      color:#fff;
-      border:1px solid #d4af37;
-      padding:16px 22px;
-      border-radius:50px;
-      text-decoration:none;
-      z-index:999;
-      box-shadow:0 0 25px rgba(212,175,55,.15);
-      animation:floatBtn 3s infinite ease-in-out;
-    }
-
-    @keyframes fadeUp{
-      from{opacity:0;transform:translateY(50px)}
-      to{opacity:1;transform:translateY(0)}
-    }
-
-    @keyframes glow{
-      0%,100%{filter:drop-shadow(0 0 10px rgba(212,175,55,.3));}
-      50%{filter:drop-shadow(0 0 25px rgba(212,175,55,.6));}
-    }
-
-    @keyframes float{
-      from{transform:translateY(100vh) scale(0)}
-      to{transform:translateY(-10vh) scale(1)}
-    }
-
-    @keyframes floatBtn{
-      0%,100%{transform:translateY(0)}
-      50%{transform:translateY(-8px)}
-    }
-
-    @media(max-width:768px){
-      body{cursor:auto;}
-      .cursor{display:none;}
-
-      header{
-        flex-direction:column;
-        gap:20px;
-      }
-
-      nav{
-        display:flex;
-        flex-wrap:wrap;
-        justify-content:center;
-      }
-
-      nav a{
-        margin:8px;
-      }
-
-      .hero-content h2{
-        font-size:62px;
-        letter-spacing:10px;
-      }
-
-      .section-title{
-        font-size:38px;
-      }
-
-      .query-left h3{
-        font-size:38px;
-        line-height:55px;
-      }
-
-      .contact-box{
-        padding:40px 25px;
-      }
-    }
-  </style>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ZOVA | Custom Fashion & Lifestyle</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
+background:#050505;
+font-family:'Poppins',sans-serif;
+color:#fff;
+overflow-x:hidden;
+cursor:none;
+}
+
+/* SCROLLBAR */
+
+body::-webkit-scrollbar{
+width:8px;
+}
+
+body::-webkit-scrollbar-thumb{
+background:#d4af37;
+border-radius:20px;
+}
+
+/* CURSOR */
+
+.cursor{
+width:22px;
+height:22px;
+border:2px solid #d4af37;
+border-radius:50%;
+position:fixed;
+pointer-events:none;
+transform:translate(-50%,-50%);
+z-index:999999;
+box-shadow:0 0 20px rgba(212,175,55,.6);
+transition:.08s;
+}
+
+/* LOADER */
+
+#loader{
+position:fixed;
+inset:0;
+background:#000;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:999999;
+transition:1s;
+}
+
+#loader h1{
+font-family:'Cinzel',serif;
+font-size:90px;
+letter-spacing:20px;
+background:linear-gradient(to right,#fff5cc,#d4af37,#7d5a00);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:glow 2s infinite;
+}
+
+#loader p{
+color:#aaa;
+margin-top:15px;
+letter-spacing:5px;
+font-size:13px;
+}
+
+/* PROGRESS BAR */
+
+.progress-bar{
+position:fixed;
+top:0;
+left:0;
+height:3px;
+background:linear-gradient(to right,#fff5cc,#d4af37,#7d5a00);
+width:0%;
+z-index:99999;
+}
+
+/* PARTICLES */
+
+.particles{
+position:fixed;
+inset:0;
+overflow:hidden;
+z-index:-1;
+}
+
+.particles span{
+position:absolute;
+display:block;
+width:4px;
+height:4px;
+background:rgba(212,175,55,.7);
+border-radius:50%;
+animation:float 15s linear infinite;
+}
+
+/* HEADER */
+
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+padding:20px 7%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(0,0,0,.65);
+backdrop-filter:blur(12px);
+z-index:999;
+border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.logo-wrap{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.logo-wrap img{
+width:75px;
+height:75px;
+object-fit:contain;
+}
+
+.logo-text h1{
+font-family:'Cinzel',serif;
+font-size:38px;
+letter-spacing:12px;
+background:linear-gradient(to right,#fff5cc,#d4af37,#7d5a00);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.logo-text p{
+color:#ccc;
+font-size:11px;
+letter-spacing:5px;
+margin-top:5px;
+}
+
+nav{
+display:flex;
+flex-wrap:wrap;
+}
+
+nav a{
+color:#ddd;
+text-decoration:none;
+margin-left:28px;
+font-size:14px;
+position:relative;
+transition:.4s;
+}
+
+nav a::after{
+content:'';
+position:absolute;
+left:0;
+bottom:-6px;
+width:0%;
+height:1px;
+background:#d4af37;
+transition:.4s;
+}
+
+nav a:hover::after{
+width:100%;
+}
+
+nav a:hover{
+color:#d4af37;
+}
+
+/* GENERAL */
+
+section{
+padding:120px 8%;
+}
+
+.section-title{
+text-align:center;
+font-family:'Cinzel',serif;
+font-size:55px;
+margin-bottom:70px;
+background:linear-gradient(to right,#fff5cc,#d4af37,#7d5a00);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+/* HERO */
+
+.hero{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+position:relative;
+}
+
+.hero-content small{
+letter-spacing:7px;
+color:#aaa;
+font-size:12px;
+}
+
+.hero-content h2{
+font-family:'Cinzel',serif;
+font-size:140px;
+letter-spacing:30px;
+margin:25px 0;
+background:linear-gradient(to right,#fff5cc,#d4af37,#7d5a00);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:fadeUp 1.5s ease;
+}
+
+.hero-content h3{
+font-size:28px;
+font-weight:400;
+letter-spacing:5px;
+margin-bottom:30px;
+}
+
+.hero-content p{
+max-width:850px;
+margin:auto;
+color:#aaa;
+line-height:35px;
+font-size:18px;
+}
+
+.hero-btns{
+margin-top:45px;
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.hero-btns a{
+padding:16px 34px;
+border-radius:50px;
+text-decoration:none;
+transition:.4s;
+font-weight:500;
+}
+
+.gold-btn{
+background:linear-gradient(to right,#fff5cc,#d4af37,#7d5a00);
+color:#000;
+}
+
+.outline-btn{
+border:1px solid #d4af37;
+color:#fff;
+}
+
+.hero-btns a:hover{
+transform:translateY(-5px);
+box-shadow:0 0 25px rgba(212,175,55,.25);
+}
+
+/* ABOUT */
+
+.about-box{
+max-width:1000px;
+margin:auto;
+text-align:center;
+}
+
+.about-box h3{
+font-family:'Cinzel',serif;
+font-size:45px;
+margin-bottom:30px;
+}
+
+.about-box p{
+color:#aaa;
+line-height:38px;
+font-size:18px;
+}
+
+/* PRODUCTS */
+
+.product-category{
+margin-bottom:100px;
+text-align:center;
+}
+
+.category-title{
+font-size:50px;
+font-family:'Cinzel',serif;
+color:#d4af37;
+margin-bottom:12px;
+}
+
+.category-price{
+font-size:28px;
+margin-bottom:45px;
+}
+
+.product-row{
+display:flex;
+justify-content:center;
+gap:30px;
+flex-wrap:wrap;
+}
+
+.product-image{
+width:280px;
+height:380px;
+object-fit:cover;
+border:2px solid #fff;
+border-radius:18px;
+cursor:pointer;
+transition:.5s;
+animation:floatImage 4s ease-in-out infinite;
+}
+
+.product-image:hover{
+transform:scale(1.05);
+box-shadow:0 0 30px rgba(212,175,55,.4);
+}
+
+/* GALLERY */
+
+.gallery-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+}
+
+.gallery-grid img{
+width:100%;
+height:380px;
+object-fit:cover;
+border-radius:18px;
+border:2px solid #fff;
+cursor:pointer;
+transition:.5s;
+}
+
+.gallery-grid img:hover{
+transform:scale(1.04);
+box-shadow:0 0 25px rgba(212,175,55,.4);
+}
+
+/* QUERY */
+
+.query-wrap{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:50px;
+align-items:center;
+}
+
+.query-left h3{
+font-family:'Cinzel',serif;
+font-size:50px;
+margin-bottom:25px;
+line-height:70px;
+}
+
+.query-left p{
+color:#aaa;
+line-height:35px;
+font-size:17px;
+}
+
+.query-form{
+background:#0d0d0d;
+padding:40px;
+border-radius:30px;
+border:1px solid rgba(255,255,255,.1);
+}
+
+.query-form input,
+.query-form textarea{
+width:100%;
+margin-bottom:20px;
+padding:18px;
+border:none;
+outline:none;
+background:#151515;
+color:#fff;
+border-radius:16px;
+border:1px solid rgba(255,255,255,.08);
+}
+
+.query-form button{
+width:100%;
+padding:16px;
+border:none;
+border-radius:16px;
+background:linear-gradient(to right,#fff5cc,#d4af37,#7d5a00);
+font-weight:600;
+cursor:pointer;
+}
+
+/* PAYMENT */
+
+.payment-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+}
+
+.payment-card{
+padding:40px;
+border-radius:28px;
+text-align:center;
+background:#0d0d0d;
+border:1px solid rgba(255,255,255,.1);
+transition:.5s;
+cursor:pointer;
+}
+
+.payment-card:hover{
+transform:translateY(-7px);
+border-color:#d4af37;
+box-shadow:0 0 30px rgba(212,175,55,.15);
+}
+
+.payment-card h3{
+font-family:'Cinzel',serif;
+font-size:32px;
+color:#d4af37;
+margin-bottom:20px;
+}
+
+.payment-card p{
+color:#aaa;
+}
+
+/* FAQ */
+
+.faq-wrap{
+max-width:900px;
+margin:auto;
+}
+
+.faq{
+background:#0d0d0d;
+margin-bottom:20px;
+border-radius:20px;
+overflow:hidden;
+border:1px solid rgba(255,255,255,.1);
+}
+
+.faq h4{
+padding:25px;
+cursor:pointer;
+font-size:20px;
+color:#d4af37;
+}
+
+.faq p{
+padding:0 25px 25px;
+color:#aaa;
+line-height:32px;
+display:none;
+}
+
+/* CONTACT */
+
+.contact-box{
+max-width:900px;
+margin:auto;
+padding:60px;
+border-radius:35px;
+background:#0d0d0d;
+border:1px solid rgba(255,255,255,.12);
+text-align:center;
+box-shadow:0 0 40px rgba(212,175,55,.08);
+}
+
+.contact-item{
+margin-bottom:35px;
+}
+
+.contact-item h3{
+font-size:30px;
+margin-bottom:10px;
+}
+
+.contact-item p{
+color:#aaa;
+line-height:34px;
+}
+
+/* FOOTER */
+
+footer{
+padding:35px;
+text-align:center;
+color:#777;
+border-top:1px solid rgba(255,255,255,.08);
+}
+
+/* POPUP */
+
+.popup{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.95);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:999999;
+backdrop-filter:blur(10px);
+}
+
+.popup img{
+max-width:85%;
+max-height:85%;
+border-radius:20px;
+border:2px solid #fff;
+transition:.4s ease;
+cursor:pointer;
+}
+
+.close-popup{
+position:absolute;
+top:40px;
+right:50px;
+color:#fff;
+font-size:55px;
+cursor:pointer;
+}
+
+/* FLOATING WHATSAPP */
+
+.whatsapp-float{
+position:fixed;
+right:25px;
+bottom:25px;
+background:#111;
+color:#fff;
+border:1px solid #d4af37;
+padding:16px 22px;
+border-radius:50px;
+text-decoration:none;
+z-index:999;
+box-shadow:0 0 25px rgba(212,175,55,.15);
+animation:floatBtn 3s infinite ease-in-out;
+}
+
+/* ANIMATIONS */
+
+.animate{
+opacity:0;
+transform:translateY(40px);
+transition:1s;
+}
+
+.animate.show{
+opacity:1;
+transform:translateY(0);
+}
+
+@keyframes glow{
+0%,100%{
+filter:drop-shadow(0 0 10px rgba(212,175,55,.3));
+}
+50%{
+filter:drop-shadow(0 0 25px rgba(212,175,55,.6));
+}
+}
+
+@keyframes float{
+from{
+transform:translateY(100vh) scale(0);
+}
+to{
+transform:translateY(-10vh) scale(1);
+}
+}
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(50px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+@keyframes floatBtn{
+0%,100%{
+transform:translateY(0);
+}
+50%{
+transform:translateY(-8px);
+}
+}
+
+@keyframes floatImage{
+0%,100%{
+transform:translateY(0);
+}
+50%{
+transform:translateY(-8px);
+}
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+body{
+cursor:auto;
+}
+
+.cursor{
+display:none;
+}
+
+header{
+flex-direction:column;
+gap:20px;
+}
+
+nav{
+justify-content:center;
+}
+
+nav a{
+margin:8px;
+}
+
+.hero-content h2{
+font-size:70px;
+letter-spacing:10px;
+}
+
+.section-title{
+font-size:40px;
+}
+
+.query-left h3{
+font-size:38px;
+line-height:55px;
+}
+
+.contact-box{
+padding:40px 25px;
+}
+
+}
+
+</style>
+
 </head>
+
 <body>
 
-<div id="loader">
-  <h1>ZOVA</h1>
-  <p>CUSTOM FASHION & LIFESTYLE</p>
-</div>
+<!-- CURSOR -->
 
 <div class="cursor"></div>
+
+<!-- LOADER -->
+
+<div id="loader">
+<h1>ZOVA</h1>
+<p>CUSTOM FASHION & LIFESTYLE</p>
+</div>
+
+<!-- PROGRESS BAR -->
+
 <div class="progress-bar"></div>
 
+<!-- PARTICLES -->
+
 <div class="particles">
-  <span style="left:10%;animation-duration:10s"></span>
-  <span style="left:20%;animation-duration:14s"></span>
-  <span style="left:30%;animation-duration:18s"></span>
-  <span style="left:40%;animation-duration:12s"></span>
-  <span style="left:50%;animation-duration:16s"></span>
-  <span style="left:60%;animation-duration:13s"></span>
-  <span style="left:70%;animation-duration:19s"></span>
-  <span style="left:80%;animation-duration:15s"></span>
-  <span style="left:90%;animation-duration:11s"></span>
+<span style="left:10%;animation-duration:10s"></span>
+<span style="left:20%;animation-duration:14s"></span>
+<span style="left:30%;animation-duration:18s"></span>
+<span style="left:40%;animation-duration:12s"></span>
+<span style="left:50%;animation-duration:16s"></span>
+<span style="left:60%;animation-duration:13s"></span>
+<span style="left:70%;animation-duration:19s"></span>
+<span style="left:80%;animation-duration:15s"></span>
+<span style="left:90%;animation-duration:11s"></span>
 </div>
+
+<!-- HEADER -->
 
 <header>
-  <div class="logo-wrap">
-    <img src="zovalogo.png" alt="ZOVA">
-    <div class="logo-text">
-      <h1>ZOVA</h1>
-      <p>CUSTOM FASHION & LIFESTYLE</p>
-    </div>
-  </div>
 
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#products">Products</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#query">Query</a>
-    <a href="#payment">Payment</a>
-    <a href="#faq">FAQ</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
+<div class="logo-wrap">
 
-<section class="hero" id="home">
-  <div class="hero-content">
-    <small>LUXURY CUSTOM BRAND</small>
-    <h2>ZOVA</h2>
-    <h3>Custom Fashion & Lifestyle</h3>
+<img src="zovalogo.png">
 
-    <p>
-      Premium custom fashion, personalized gifts and luxury lifestyle creations designed with creativity, identity and modern aesthetics.
-    </p>
-
-    <div class="hero-btns">
-      <a href="#products" class="gold-btn">Explore Products</a>
-      <a href="https://wa.me/918391979133" class="outline-btn">WhatsApp Order</a>
-    </div>
-  </div>
-</section>
-
-<section id="about">
-  <h2 class="section-title">ABOUT ZOVA</h2>
-
-  <div class="about-box">
-    <h3>Crafted With Identity & Style</h3>
-
-    <p>
-      ZOVA is a modern custom fashion and lifestyle brand focused on creating premium personalized products with creativity, emotion and elegant aesthetics.
-      <br><br>
-      From luxury photo frames and coffee mugs to modern streetwear and custom lifestyle creations, every product is designed to feel unique, stylish and meaningful.
-      <br><br>
-      At ZOVA, personalization is more than design — it is identity, expression and experience.
-    </p>
-  </div>
-</section>
-
-<section id="products">
-  <h2 class="section-title">OUR PRODUCTS</h2>
-
-  <div class="product-grid">
-
-    <div class="card">
-      <img src="frame1.jpg" onclick="openPopup('frame1.jpg','Photo Frame','ZPF-101','₹599 — ₹1499')">
-
-      <div class="card-content">
-        <div class="code">PRODUCT CODE : ZPF-101</div>
-        <h3>Photo Frame</h3>
-        <div class="price">₹599.00 — ₹1499.00</div>
-
-        <p>Luxury customized photo frames designed for premium gifting and unforgettable memories.</p>
-
-        <div class="card-btns">
-          <button class="normal-btn" onclick="orderNow('Photo Frame','ZPF-101','Normal')">Normal</button>
-          <button class="luxury-btn" onclick="orderNow('Photo Frame','ZPF-101','Luxury')">Luxury</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="mug1.jpg" onclick="openPopup('mug1.jpg','Coffee Mug','ZCM-202','₹399 — ₹699')">
-
-      <div class="card-content">
-        <div class="code">PRODUCT CODE : ZCM-202</div>
-        <h3>Coffee Mug</h3>
-        <div class="price">₹399.00 — ₹699.00</div>
-
-        <p>Premium personalized coffee mugs with luxury printing and creative aesthetics.</p>
-
-        <div class="card-btns">
-          <button class="normal-btn" onclick="orderNow('Coffee Mug','ZCM-202','Normal')">Normal</button>
-          <button class="luxury-btn" onclick="orderNow('Coffee Mug','ZCM-202','Luxury')">Luxury</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="t1.jpeg" onclick="openPopup('t1.jpeg','T-Shirt','ZTS-303','₹799 — ₹1999')">
-
-      <div class="card-content">
-        <div class="code">PRODUCT CODE : ZTS-303</div>
-        <h3>T-Shirt</h3>
-        <div class="price">₹799.00 — ₹1999.00</div>
-
-        <p>Luxury oversized anime and graphic T-shirts designed with modern streetwear vibes.</p>
-
-        <div class="card-btns">
-          <button class="normal-btn" onclick="orderNow('T-Shirt','ZTS-303','Normal')">Normal</button>
-          <button class="luxury-btn" onclick="orderNow('T-Shirt','ZTS-303','Luxury')">Luxury</button>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<section id="gallery">
-  <h2 class="section-title">GALLERY</h2>
-
-  <div class="gallery-grid">
-    <div class="gallery-item"><img src="frame1.jpg" onclick="openPopup('frame1.jpg','Photo Frame','ZPF-101','₹599 — ₹1499')"></div>
-    <div class="gallery-item"><img src="mug1.jpg" onclick="openPopup('mug1.jpg','Coffee Mug','ZCM-202','₹399 — ₹699')"></div>
-    <div class="gallery-item"><img src="t1.jpeg" onclick="openPopup('t1.jpeg','T-Shirt','ZTS-303','₹799 — ₹1999')"></div>
-  </div>
-</section>
-
-<section id="query">
-  <h2 class="section-title">SEND QUERY</h2>
-
-  <div class="query-wrap">
-
-    <div class="query-left">
-      <h3>Have A Custom Idea?</h3>
-
-      <p>
-        Share your design, product idea or customization request and ZOVA will transform it into a premium personalized experience.
-      </p>
-    </div>
-
-    <form class="query-form" action="https://formsubmit.co/sahalom.sh2001@gmail.com" method="POST">
-      <input type="text" name="Name" placeholder="Full Name" required>
-      <input type="email" name="Email" placeholder="Email Address" required>
-      <input type="text" name="Phone" placeholder="Phone Number" required>
-      <input type="text" name="Product Code" placeholder="Product Code">
-      <textarea name="Message" rows="6" placeholder="Write Your Message" required></textarea>
-
-      <button type="submit">SEND QUERY</button>
-    </form>
-  </div>
-</section>
-
-<section id="payment">
-  <h2 class="section-title">PAYMENT METHODS</h2>
-
-  <div class="payment-grid">
-
-    <div class="payment-card" onclick="copyText('zova@upi')">
-      <h3>UPI</h3>
-      <p>zova@upi</p>
-    </div>
-
-    <div class="payment-card" onclick="copyText('8391979133@ybl')">
-      <h3>PhonePe</h3>
-      <p>8391979133@ybl</p>
-    </div>
-
-    <div class="payment-card" onclick="copyText('8391979133@okaxis')">
-      <h3>Google Pay</h3>
-      <p>8391979133@okaxis</p>
-    </div>
-
-    <div class="payment-card" onclick="copyText('+91 8391979133')">
-      <h3>Paytm</h3>
-      <p>+91 8391979133</p>
-    </div>
-
-  </div>
-</section>
-
-<section id="faq">
-  <h2 class="section-title">FAQ</h2>
-
-  <div class="faq-wrap">
-
-    <div class="faq">
-      <h4 onclick="toggleFaq(this)">How can I place an order?</h4>
-      <p>You can place your order directly through WhatsApp or our query form.</p>
-    </div>
-
-    <div class="faq">
-      <h4 onclick="toggleFaq(this)">Do you create custom designs?</h4>
-      <p>Yes, every product can be customized according to your design and idea.</p>
-    </div>
-
-    <div class="faq">
-      <h4 onclick="toggleFaq(this)">How many days does delivery take?</h4>
-      <p>Usually delivery takes around 3–7 business days depending on your location.</p>
-    </div>
-
-    <div class="faq">
-      <h4 onclick="toggleFaq(this)">Do you offer luxury packaging?</h4>
-      <p>Yes. ZOVA provides premium luxury packaging for selected products.</p>
-    </div>
-
-  </div>
-</section>
-
-<section id="contact">
-  <h2 class="section-title">CONTACT ZOVA</h2>
-
-  <div class="contact-box">
-
-    <div class="contact-item">
-      <h3>📍 Location</h3>
-      <p>
-        Mithipur, Jangipur,<br>
-        Murshidabad,<br>
-        West Bengal, India - 742213
-      </p>
-    </div>
-
-    <div class="contact-item">
-      <h3>💬 WhatsApp</h3>
-      <p>+91 8391979133</p>
-    </div>
-
-    <div class="contact-item">
-      <h3>📧 Email</h3>
-      <p>sahalom.sh2001@gmail.com</p>
-    </div>
-
-  </div>
-</section>
-
-<footer>
-  © 2026 ZOVA — Custom Fashion & Lifestyle
-</footer>
-
-<div class="popup" id="popup">
-  <span class="close-popup" onclick="closePopup()">×</span>
-
-  <div class="popup-content">
-    <img id="popupImg">
-
-    <h3 id="popupTitle"></h3>
-    <p id="popupCode"></p>
-    <p id="popupPrice"></p>
-
-    <div class="zoom-controls">
-      <button onclick="zoomOut()">−</button>
-      <button onclick="zoomIn()">+</button>
-    </div>
-
-    <div class="popup-btns">
-      <button class="normal-btn" onclick="popupOrder('Normal')">Normal</button>
-      <button class="luxury-btn" onclick="popupOrder('Luxury')">Luxury</button>
-    </div>
-  </div>
+<div class="logo-text">
+<h1>ZOVA</h1>
+<p>CUSTOM FASHION & LIFESTYLE</p>
 </div>
 
-<a href="https://wa.me/918391979133" class="whatsapp-float">
-  Chat With ZOVA
+</div>
+
+<nav>
+
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#products">Products</a>
+<a href="#gallery">Gallery</a>
+<a href="#query">Query</a>
+<a href="#payment">Payment</a>
+<a href="#faq">FAQ</a>
+<a href="#contact">Contact</a>
+
+</nav>
+
+</header>
+
+<!-- HOME -->
+
+<section class="hero" id="home">
+
+<div class="hero-content animate">
+
+<small>LUXURY CUSTOM BRAND</small>
+
+<h2>ZOVA</h2>
+
+<h3>Custom Fashion & Lifestyle</h3>
+
+<p>
+Premium custom fashion, personalized gifts and luxury lifestyle creations designed with creativity, identity and modern aesthetics.
+</p>
+
+<div class="hero-btns">
+
+<a href="#products" class="gold-btn">
+Explore Products
 </a>
+
+<a href="https://wa.me/918391979133" class="outline-btn">
+WhatsApp Order
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section id="about">
+
+<h2 class="section-title animate">
+ABOUT ZOVA
+</h2>
+
+<div class="about-box animate">
+
+<h3>
+Crafted With Identity & Style
+</h3>
+
+<p>
+ZOVA is a modern custom fashion and lifestyle brand focused on creating premium personalized products with creativity, emotion and elegant aesthetics.
+<br><br>
+From luxury photo frames and coffee mugs to modern streetwear and custom lifestyle creations, every product is designed to feel unique, stylish and meaningful.
+<br><br>
+At ZOVA, personalization is more than design — it is identity, expression and experience.
+</p>
+
+</div>
+
+</section>
+
+<!-- PRODUCTS -->
+
+<section id="products">
+
+<h2 class="section-title animate">
+OUR PRODUCTS
+</h2>
+
+<!-- PHOTO FRAME -->
+
+<div class="product-category animate">
+
+<h3 class="category-title">
+Photo Frame
+</h3>
+
+<div class="category-price">
+₹499.00 — ₹999.00
+</div>
+
+<div class="product-row">
+
+<img src="frame1.jpg"
+class="product-image"
+onclick="openPopup(this.src,'Photo Frame','ZPF-101')">
+
+<img src="frame2.jpg"
+class="product-image"
+onclick="openPopup(this.src,'Photo Frame','ZPF-102')">
+
+<img src="frame3.jpg"
+class="product-image"
+onclick="openPopup(this.src,'Photo Frame','ZPF-103')">
+
+</div>
+
+</div>
+
+<!-- COFFEE CUP -->
+
+<div class="product-category animate">
+
+<h3 class="category-title">
+Coffee Mug
+</h3>
+
+<div class="category-price">
+₹399.00 — ₹699.00
+</div>
+
+<div class="product-row">
+
+<img src="mug1.jpg"
+class="product-image"
+onclick="openPopup(this.src,'Coffee Mug','ZCM-201')">
+
+<img src="mug2.jpg"
+class="product-image"
+onclick="openPopup(this.src,'Coffee Mug','ZCM-202')">
+
+<img src="mug3.jpg"
+class="product-image"
+onclick="openPopup(this.src,'Coffee Mug','ZCM-203')">
+
+</div>
+
+</div>
+
+<!-- TSHIRT -->
+
+<div class="product-category animate">
+
+<h3 class="category-title">
+T-Shirt
+</h3>
+
+<div class="category-price">
+₹399.00 — ₹1999.00
+</div>
+
+<div class="product-row">
+
+<img src="t1.jpeg"
+class="product-image"
+onclick="openPopup(this.src,'T-Shirt','ZTS-301')">
+
+<img src="t2.jpeg"
+class="product-image"
+onclick="openPopup(this.src,'T-Shirt','ZTS-302')">
+
+<img src="t3.jpeg"
+class="product-image"
+onclick="openPopup(this.src,'T-Shirt','ZTS-303')">
+
+</div>
+
+</div>
+
+</section>
+
+<!-- GALLERY -->
+
+<section id="gallery">
+
+<h2 class="section-title animate">
+GALLERY
+</h2>
+
+<div class="gallery-grid animate">
+
+<img src="frame1.jpg"
+onclick="openPopup(this.src,'Photo Frame','ZPF-101')">
+
+<img src="mug1.jpg"
+onclick="openPopup(this.src,'Coffee Mug','ZCM-201')">
+
+<img src="t1.jpeg"
+onclick="openPopup(this.src,'T-Shirt','ZTS-301')">
+
+<img src="frame2.jpg"
+onclick="openPopup(this.src,'Photo Frame','ZPF-102')">
+
+<img src="mug2.jpg"
+onclick="openPopup(this.src,'Coffee Mug','ZCM-202')">
+
+<img src="t2.jpeg"
+onclick="openPopup(this.src,'T-Shirt','ZTS-302')">
+
+</div>
+
+</section>
+
+<!-- QUERY -->
+
+<section id="query">
+
+<h2 class="section-title animate">
+SEND QUERY
+</h2>
+
+<div class="query-wrap">
+
+<div class="query-left animate">
+
+<h3>
+Have A Custom Idea?
+</h3>
+
+<p>
+Share your design, product idea or customization request and ZOVA will transform it into a premium personalized experience.
+</p>
+
+</div>
+
+<form class="query-form animate"
+action="https://formsubmit.co/sahalom.sh2001@gmail.com"
+method="POST">
+
+<input type="text"
+placeholder="Full Name"
+required>
+
+<input type="email"
+placeholder="Email Address"
+required>
+
+<input type="text"
+placeholder="Phone Number"
+required>
+
+<input type="text"
+placeholder="Product Code">
+
+<textarea rows="6"
+placeholder="Write Your Message"
+required></textarea>
+
+<button type="submit">
+SEND QUERY
+</button>
+
+</form>
+
+</div>
+
+</section>
+
+<!-- PAYMENT -->
+
+<section id="payment">
+
+<h2 class="section-title animate">
+PAYMENT METHODS
+</h2>
+
+<div class="payment-grid">
+
+<div class="payment-card animate"
+onclick="copyText('zova@upi')">
+
+<h3>UPI</h3>
+
+<p>zova@upi</p>
+
+</div>
+
+<div class="payment-card animate"
+onclick="copyText('8391979133@ybl')">
+
+<h3>PhonePe</h3>
+
+<p>8391979133@ybl</p>
+
+</div>
+
+<div class="payment-card animate"
+onclick="copyText('8391979133@okaxis')">
+
+<h3>Google Pay</h3>
+
+<p>8391979133@okaxis</p>
+
+</div>
+
+<div class="payment-card animate"
+onclick="copyText('+91 8391979133')">
+
+<h3>Paytm</h3>
+
+<p>+91 8391979133</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FAQ -->
+
+<section id="faq">
+
+<h2 class="section-title animate">
+FAQ
+</h2>
+
+<div class="faq-wrap">
+
+<div class="faq animate">
+
+<h4 onclick="toggleFaq(this)">
+How can I place an order?
+</h4>
+
+<p>
+You can place your order directly through WhatsApp or our query form.
+</p>
+
+</div>
+
+<div class="faq animate">
+
+<h4 onclick="toggleFaq(this)">
+Do you create custom designs?
+</h4>
+
+<p>
+Yes, every product can be customized according to your design and idea.
+</p>
+
+</div>
+
+<div class="faq animate">
+
+<h4 onclick="toggleFaq(this)">
+How many days does delivery take?
+</h4>
+
+<p>
+Usually delivery takes around 3–7 business days depending on your location.
+</p>
+
+</div>
+
+<div class="faq animate">
+
+<h4 onclick="toggleFaq(this)">
+Do you offer luxury packaging?
+</h4>
+
+<p>
+Yes. ZOVA provides premium luxury packaging for selected products.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+<h2 class="section-title animate">
+CONTACT ZOVA
+</h2>
+
+<div class="contact-box animate">
+
+<div class="contact-item">
+
+<h3>📍 Location</h3>
+
+<p>
+Mithipur, Jangipur, Murshidabad,<br>
+West Bengal, India - 742213<br>
+</p>
+
+</div>
+
+<div class="contact-item">
+
+<h3>💬 WhatsApp</h3>
+
+<p>
++91 8391979133
+</p>
+
+</div>
+
+<div class="contact-item">
+
+<h3>📧 Email</h3>
+
+<p>
+sahalom.sh2001@gmail.com
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+© 2026 ZOVA — Custom Fashion & Lifestyle
+
+</footer>
+
+<!-- POPUP -->
+
+<div class="popup" id="popup">
+
+<span class="close-popup"
+onclick="closePopup()">
+×
+</span>
+
+<img id="popup-image">
+
+</div>
+
+<!-- FLOATING WHATSAPP -->
+
+<a href="https://wa.me/918391979133"
+class="whatsapp-float">
+
+Chat With ZOVA
+
+</a>
+
+<!-- JAVASCRIPT -->
 
 <script>
 
+/* LOADER */
+
 setTimeout(()=>{
-  document.getElementById('loader').style.opacity='0';
-  document.getElementById('loader').style.visibility='hidden';
-},2500)
+
+document.getElementById('loader').style.opacity='0';
+document.getElementById('loader').style.visibility='hidden';
+
+},2500);
+
+/* CURSOR */
 
 const cursor=document.querySelector('.cursor');
+
 document.addEventListener('mousemove',(e)=>{
-  cursor.style.left=e.clientX+'px';
-  cursor.style.top=e.clientY+'px';
-})
+
+cursor.style.left=e.clientX+'px';
+cursor.style.top=e.clientY+'px';
+
+});
+
+/* PROGRESS BAR */
 
 window.addEventListener('scroll',()=>{
-  let winScroll=document.body.scrollTop || document.documentElement.scrollTop;
-  let height=document.documentElement.scrollHeight-document.documentElement.clientHeight;
-  let scrolled=(winScroll/height)*100;
-  document.querySelector('.progress-bar').style.width=scrolled+'%';
-})
 
-function orderNow(product,code,type){
-  let message=`Hello ZOVA,%0A%0ABrand: ZOVA%0AProduct: ${product}%0ACode: ${code}%0AType: ${type}`;
-  window.open(`https://wa.me/918391979133?text=${message}`)
+let winScroll=document.body.scrollTop || document.documentElement.scrollTop;
+
+let height=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+
+let scrolled=(winScroll/height)*100;
+
+document.querySelector('.progress-bar').style.width=scrolled+'%';
+
+});
+
+/* POPUP */
+
+let popup=document.getElementById("popup");
+let popupImage=document.getElementById("popup-image");
+
+let zoomed=false;
+
+function openPopup(src,product,code){
+
+popup.style.display="flex";
+
+popupImage.src=src;
+
+popupImage.setAttribute(
+"data-whatsapp",
+`https://wa.me/918391979133?text=
+Brand: ZOVA
+Product: ${product}
+Code: ${code}
+Image: ${src}`
+);
+
 }
 
-let currentScale=1;
-let currentProduct='';
-let currentCode='';
-
-function openPopup(img,title,code,price){
-  document.getElementById('popup').style.display='flex';
-  document.getElementById('popupImg').src=img;
-  document.getElementById('popupTitle').innerText=title;
-  document.getElementById('popupCode').innerText='Product Code : '+code;
-  document.getElementById('popupPrice').innerText=price;
-
-  currentProduct=title;
-  currentCode=code;
-  currentScale=1;
-  document.getElementById('popupImg').style.transform='scale(1)';
-}
+/* CLOSE */
 
 function closePopup(){
-  document.getElementById('popup').style.display='none';
+
+popup.style.display="none";
+
+popupImage.style.transform="scale(1)";
+
+zoomed=false;
+
 }
 
-function zoomIn(){
-  currentScale+=0.2;
-  document.getElementById('popupImg').style.transform=`scale(${currentScale})`;
+/* CLICK TO ZOOM */
+
+popupImage.addEventListener("click",()=>{
+
+if(!zoomed){
+
+popupImage.style.transform="scale(1.8)";
+zoomed=true;
+
+}else{
+
+popupImage.style.transform="scale(1)";
+zoomed=false;
+
 }
 
-function zoomOut(){
-  if(currentScale>1){
-    currentScale-=0.2;
-    document.getElementById('popupImg').style.transform=`scale(${currentScale})`;
-  }
+});
+
+/* CLICK OUTSIDE */
+
+popup.addEventListener("click",(e)=>{
+
+if(e.target===popup){
+
+closePopup();
+
 }
 
-function popupOrder(type){
-  orderNow(currentProduct,currentCode,type)
-}
+});
+
+/* COPY */
 
 function copyText(text){
-  navigator.clipboard.writeText(text);
-  alert('Copied Successfully');
+
+navigator.clipboard.writeText(text);
+
+alert('Copied Successfully');
+
 }
 
+/* FAQ */
+
 function toggleFaq(el){
-  let p=el.nextElementSibling;
-  p.style.display=p.style.display==='block' ? 'none':'block';
+
+let p=el.nextElementSibling;
+
+p.style.display=
+p.style.display==='block'
+? 'none'
+: 'block';
+
 }
+
+/* SCROLL ANIMATION */
+
+const animated=document.querySelectorAll(".animate");
+
+window.addEventListener("scroll",()=>{
+
+animated.forEach((el)=>{
+
+let top=el.getBoundingClientRect().top;
+
+if(top<window.innerHeight-100){
+
+el.classList.add("show");
+
+}
+
+});
+
+});
+
+/* INITIAL SHOW */
+
+window.dispatchEvent(new Event('scroll'));
 
 </script>
 
 </body>
+
 </html>
